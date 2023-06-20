@@ -8,6 +8,7 @@
 5) Reopen terminal, type => sudo apt-get install subversion
 6) In terminal, type => npm install -g opspark
 7) In terminal, type => os install
+8) Select project to install
 
 # First Website => index.html
 1) Complete Todos 2-10
