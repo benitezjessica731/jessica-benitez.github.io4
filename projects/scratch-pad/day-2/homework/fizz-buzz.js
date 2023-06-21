@@ -13,8 +13,6 @@
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
 
-
-
     // YOUR CODE GOES ABOVE HERE //
 }
 
