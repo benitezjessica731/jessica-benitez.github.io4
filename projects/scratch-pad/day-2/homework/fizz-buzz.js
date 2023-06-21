@@ -12,7 +12,27 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
+    //create a for loop to print out nubers 1-100
+    for (let i = 1; i < 101; i++) {
+        //create if statement to determine if i is divisible by 15
+        if (i % 15 === 0) {
+            //if true, log fizzbuzz to the console
+            console.log("FizzBuzz");
+        //create else if statement to determine if i is divisible by 3
+        } else if (i % 3 === 0) {
+            //if true, log fizz to the console
+            console.log("Fizz");
+        //create else if statement to determine if i is divisible by 5
+        } else if (i % 5 === 0) {
+            //if true, log buzz to the console
+            console.log("Buzz")
+        } else {
+            //all else log i to the console
+          console.log(i);
+        }
+      }
 
+      
     // YOUR CODE GOES ABOVE HERE //
 }
 
