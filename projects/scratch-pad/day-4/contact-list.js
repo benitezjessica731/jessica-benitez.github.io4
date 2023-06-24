@@ -58,11 +58,13 @@ function makeContactList() {
             contacts.push(contact);
         },
         findContact: function(fullName) {
-            if (contacts.nameFirst + " " + contacts.nameLast === fullName) {
-                return contact;
-            } else {
-                return undefined;
+            for (let i = 0; i < contacts.length; i++) {
+                if (contacts[i].nameFirst + " " + contacts[i].nameLast === fullName) {
+                    return contacts[i];
+                } else {
+                    return undefined;
             }
+        }
         },
         removeContact: function(contact) {
             contacts.splice(contact, 1);
