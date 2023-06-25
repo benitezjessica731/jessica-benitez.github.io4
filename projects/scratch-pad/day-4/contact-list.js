@@ -35,6 +35,7 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) { //MAKE SURE TO GET THIS PASSING FIRST
+    //return an object with the properties: id, namefirst, namelast
     return {
         id: id,
         nameFirst: nameFirst,
@@ -55,22 +56,39 @@ function makeContactList() {
             return contacts.length;
         },
         addContact: function(contact) {
+            //use push method to add contact
             contacts.push(contact);
         },
         findContact: function(fullName) {
+            //create for loop to iterate through contacts array
             for (let i = 0; i < contacts.length; i++) {
+                //create if statement to determine if fullName is equal to namefirst and namelast
                 if (contacts[i].nameFirst + " " + contacts[i].nameLast === fullName) {
+                    //if true, return the contact
                     return contacts[i];
+                //else, return undefined
                 } else {
                     return undefined;
             }
         }
         },
         removeContact: function(contact) {
+            //use slice method to remove contact
             contacts.splice(contact, 1);
         },
         printAllContactNames: function(){
-            
+            //declare an empty string for names
+            let fullName = "";
+            //create for loop to iterate over contacts array
+            for (let i = 0; i < contacts.length; i++) {
+                //fullName is equal to each contact namefirst plus space and namelast
+                fullName += contacts[i].nameFirst + " " + contacts[i].nameLast;
+                //create if statement to determine last name in list of contacts
+                if (i !== contacts.length - 1) {
+                    fullName += "\n";
+                }
+            }
+            return fullName;
         }
     }
 }
