@@ -26,12 +26,14 @@ function range(start, end) {
     //create something to collect the output returned
     let output = [];
     //create for loop
-    for (let i = start; i <= end; i++) {
-        if (end > start) {
+    if (start <= end) {
+      for (let i = start; i <= end; i++) {
             output.push(i);
-        } else if (start > end) {
-            output.push(i);
-        }
+        } 
+    } else {
+        for (let j = start; j >= end; j--) {
+          output.push(j);
+    }
     }
     return output;
     
