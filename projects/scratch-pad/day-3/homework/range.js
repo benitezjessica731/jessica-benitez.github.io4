@@ -25,16 +25,22 @@ function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     //create something to collect the output returned
     let output = [];
-    //create for loop
+    //create if statement to determine if start is less than end
     if (start <= end) {
+        //create for loop to iterate over start and end
       for (let i = start; i <= end; i++) {
+            //push i onto the output array
             output.push(i);
         } 
+    //create else statement if start is greater than end
     } else {
+        //create another for loop to decrement end to start
         for (let j = start; j >= end; j--) {
+            //push j onto the output array
           output.push(j);
     }
     }
+    //return the output
     return output;
     
     
