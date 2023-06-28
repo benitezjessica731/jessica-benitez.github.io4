@@ -9,6 +9,9 @@
  * variable is declared, but not yet assigned or initialized. */ 
  var nameFirst;
  console.log(nameFirst); //will print undefined to the console
+ //Below the variable is assigned/initialized.
+ nameFirst = "Jessica";
+ console.log(nameFirst); //will log Jessica to the console
 /*
  * 2: Var, let, and const
  * Var was traditionally used to declare variables in Javascript. Variables declared with var are function scoped, meaning
