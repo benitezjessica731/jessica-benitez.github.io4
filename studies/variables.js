@@ -40,6 +40,13 @@ console.log(x); //1 will log to the console because x = 1 is declared outside of
  console.log(currentCity); //will print assignment error to console because const can not be reassigned
 /*
  * // 3: Hoisting //
- * 
- * 
- */
+ * Before the statements of a program are executed all var and function declarations are hoisted to the top of the program.
+ * Only the declarations are hoisted to the top, not the assignemts. */
+console.log(x); //this will print undefined because only the declaration of x is hoisted to the top, not the assignment
+var x = 10;
+console.log(x); //this will print 10
+//let and const values are not hoisted to the top and cannot be referenced before they are declared
+console.log(y); //will log a reference error to console
+console.log(nameFirst); //will log a reference error to console
+let y = 10;
+const nameFirst = "Jessica";
