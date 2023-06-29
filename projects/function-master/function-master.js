@@ -134,22 +134,30 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 //addFriend() : Should take a name and an object and add the name to the object's friends array then return the object
 function addFriend (name, object) {
-    
+    //push name onto friends array in object
+    object.friends.push(name);
+    //return object
+    return object;
     
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 12 - Is Friend ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//isFriend() : Should take a name and an object and return true if <name> is a friend of <object> and false otherwise
 function isFriend(name, object) {
-
+    //create if statement to determine if friends exists and is an array
+    if (object && object.friends && Array.isArray(object.friends)) {
+        //if true, use the includes method to see if name is in the friends array
+        return object.friends.includes(name);
+      } //if not, return false
+      return false;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//nonFriends() : Should take a name and a list of people, and return a list of all the names that <name> is not friends with 
 function nonFriends(name, array) {
 
 }
