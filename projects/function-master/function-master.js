@@ -209,6 +209,7 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 //dedup() : Should take an array and return an array with all the duplicates removed
 function dedup(array) {
+    //use Array.from new set to automatically delete any duplicates
     return Array.from(new Set(array));
 }
 
