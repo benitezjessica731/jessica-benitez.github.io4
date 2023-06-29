@@ -3,7 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+    //take an object and return its values in an array
+    return Object.values(object);
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +12,8 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    //take an object and return all its keys in a string each separated with a space
+    return Object.keys(object).join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +29,15 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    //create an if statement to determine if collection is an array
+    if (Array.isArray(collection)) {
+        //if true, return array as a string
+        return "array";
+    //create an else if statement to determine if collection is an object and not equal to null
+    } else if (typeof collection === "object" && collection !== null) {
+        //if true, return object as a string
+        return "object";
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +45,8 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    //take a string of one word, and return the word with its first letter capitalized 
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,15 +54,23 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    //first split the string of words from the space
+    let words = string.split(" ");
+    //create for loop to iterate over the words
+    for (let i = 0; i < words.length; i++) {
+        //capitalize each word at each index and concatenate the rest of the string
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    //return the words joined back together with a space
+    return words.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//Should take an object with a name property and return 'Welcome <Name>!' 
 function welcomeMessage(object) {
-
+    return "Welcome " + object.name + "!";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,13 +78,14 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    return object.name + " is a " + object.species;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 9 - Maybe Noises /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//maybeNoises() : Should take an object, if this object has a noises array 
+//return them as a string separated by a space, if there are no noises return 'there are no noises' 
 function maybeNoises(object) {
 
 }
