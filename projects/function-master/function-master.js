@@ -159,31 +159,57 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 //nonFriends() : Should take a name and a list of people, and return a list of all the names that <name> is not friends with 
 function nonFriends(name, array) {
-
+    //declare an empty nonfriends array
+    let nonFriends = [];
+    //use for loop to iterate over array
+    for (let i = 0; i < array.length; i++) {
+    //let person equal to array[i]
+      let person = array[i];
+      //create if statment to determine if name is not included
+      if (person.name !== name && !person.friends.includes(name)) {
+        //if true, push this name onto the nonfriends array
+        nonFriends.push(person.name);
+      }
+    }
+    //return the update nonfriends array
+    return nonFriends;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//Should take an object, a key and a value. Should update the property <key> on <object> with new <value>. If <key> does not exist on <object> create it.
 function updateObject(object, key, value) {
-
+    //update the property key on object with new value
+    object[key] = value;
+    //return object
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//Should take an object and an array of strings. Should remove any properties on <object> that are listed in <array> 
 function removeProperties(object, array) {
-
+    //create a for loop to iterate over array
+    for (let i = 0; i < array.length; i++) {
+        //let key equal to index
+        let key = array[i];
+        //create if statement and object.hasownproperty to determine if object has that index key already
+        if (object.hasOwnProperty(key)) {
+        //if true, delete property
+          delete object[key];
+        }
+      } //return object
+      return object;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//dedup() : Should take an array and return an array with all the duplicates removed
 function dedup(array) {
-
+    return Array.from(new Set(array));
 }
 
 //////////////////////////////////////////////////////////////////////
