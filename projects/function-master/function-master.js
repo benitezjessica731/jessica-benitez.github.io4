@@ -21,7 +21,17 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    //declare an empty array to store string values
+    storArr = [];
+    //create for in loop to iterate over object
+    for (let key in object) {
+        //create if statement to determine if value is a typeof string
+        if (typeof object[key] === "string") {
+            //if true, push the value onto the storage array
+            storArr.push(object[key]) 
+        }
+    } //return the storage array joined by spaces
+    return storArr.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -70,7 +80,10 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 //Should take an object with a name property and return 'Welcome <Name>!' 
 function welcomeMessage(object) {
-    return "Welcome " + object.name + "!";
+    //let capitalizedname equal to the object name first letter uppercased and the rest lowercased
+    let capitalizedName = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    //return welcome name !
+    return "Welcome " + capitalizedName + "!";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -78,7 +91,12 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-    return object.name + " is a " + object.species;
+    //let capitalizedname equal to the object name first letter uppercased and the rest lowercased
+    let capitalizedName = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    //let capitalizedspecies equal the species name first letter capitalized and the rest lowercased
+    let capitalizedSpecies = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    //return name is a species
+    return capitalizedName + " is a " + capitalizedSpecies;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -87,23 +105,37 @@ function profileInfo(object) {
 //maybeNoises() : Should take an object, if this object has a noises array 
 //return them as a string separated by a space, if there are no noises return 'there are no noises' 
 function maybeNoises(object) {
-
+    //create if statement to determine if object has a noises array
+    if (object.noises && object.noises.length > 0) {
+        //if true return them as a string seperated by a space
+        return object.noises.join(" ");
+    } 
+    //else return there are no noises
+    return "there are no noises";
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//hasWord() : Should take a string of words and a word and return true if <word> is in <string of words>, otherwise return false.
 function hasWord(string, word) {
-
+    //let an empty array equal to the string split by the space
+    let storArr = string.split(" ")
+    //use includes method to see if storarr has word
+    if (storArr.includes(word)) {
+        //if true, return true
+        return true;
+    //else return false
+    } return false;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 11 - Add Friend //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//addFriend() : Should take a name and an object and add the name to the object's friends array then return the object
 function addFriend (name, object) {
-
+    
+    
 }
 
 //////////////////////////////////////////////////////////////////////
