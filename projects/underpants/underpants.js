@@ -154,8 +154,9 @@ _.indexOf = function(array, value) {
             //if true, return the index of the array
             return i;
         }
+    }
     //else return -1
-    } return -1;
+     return -1;
 }
 
 /** _.contains
@@ -172,7 +173,9 @@ _.indexOf = function(array, value) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(array, value) {
+    return array.includes(value) ? true: false;
+}
 
 /** _.each
 * Arguments:
@@ -192,9 +195,20 @@ _.indexOf = function(array, value) {
 _.each = function (collection, func) {
     //if collection is an array
     if (Array.isArray(collection)) {
-        //func(array[i, /current index/, /array itself/])
+        //create for loop to iterate over collection
+        for (let i = 0; i < collection.length; i++) {
+            //call the function
+            func(collection[i], i, collection);
+        }
     //else collection is an object
-    } else {}
+    } else if (typeof collection === "object") {
+        //create for in loop
+        for (let key in collection) {
+            //call the function
+            func(collection[key], key, collection);
+        }
+
+    }
     
 }
 
@@ -207,7 +221,20 @@ _.each = function (collection, func) {
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = function(array) {
+    //declare an empty array
+    let newArr = [];
+    //create for loop to iterate over array
+    for (let i = 0; i < array.length; i++) {
+        //create if statement and use indexof test if value is unique
+        if (_.indexOf(newArr, array[i]) === -1){
+            //if true, push the value on the new array
+            newArr.push(array[i]);
+        }
+    }
+    //return the new array
+    return newArr;
+}
 
 /** _.filter
 * Arguments:
@@ -224,7 +251,20 @@ _.each = function (collection, func) {
 * Extra Credit:
 *   use _.each in your implementation
 */
-
+_.filter = function(array, func) {
+    //declare an empty array
+    let storArr = [];
+    //create for loop to iterate over
+    for (let i = 0; i < array.length; i++) {
+        //create if statement to determine if calling the function is true
+       if (func(array[i], i, array) === true) {
+        //if true, push the element onto the storage array
+        storArr.push(array[i]);
+       }
+    }
+    //return the storage array
+    return storArr;
+}
 
 /** _.reject
 * Arguments:
@@ -308,7 +348,38 @@ _.each = function (collection, func) {
 * Examples:
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
+*   _.every([1, 2, 3]) => true
+*   _.every([1, null, 3]) => false
 */
+_.every = function(collection, func) {
+    //create if statement to determine if collection is an array
+    if (Array.isArray(collection)) {
+        //determine if function wasn't provided
+        if (func === undefined) {
+            for (let i = 0; i < collection.length; i++) {
+                if (!collection[i]){
+                    return false;
+                }
+            }
+        } else { //else it was
+            for (let i = 0; i < collection.length; i++) {
+                if (!func(collection[i], i, collection)) { //if result of invoking is falsey
+                    return false;
+                }
+            }
+        }
+    //else it is an object
+    } else {
+        //determine if function wasn't provided
+        if (func === undefined) {
+
+        } else { //else it was
+
+        }
+
+    }
+    return true;
+};
 
 
 /** _.some
