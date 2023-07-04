@@ -56,8 +56,8 @@ module.exports.typeOf = typeOf;
  * first: Takes in an array and a number; based on the conditions, returns either an empty array, the first element
  * in array, or the first number items of array.  
  *
- * @param {*} array: Function takes in array.
- * @param {*} number: Function takes in a number as a second argument.
+ * @param {*} array: Function takes in arra as the first perameter.
+ * @param {*} number: Function takes in a number as a second parameter.
  * @returns {*} 
  */
 function first(array, number) {
@@ -71,3 +71,23 @@ function first(array, number) {
     return array.slice(0, number);
 }
 module.exports.first = first;
+
+/**
+ * last: Takes in an array and a number; based on the conditions, returns either an empty array, the last element
+ * in array, or the last number items of array.
+ * 
+ * @param {*} array: Function takes in an array as the first parameter.
+ * @param {*} number: Function takes in a number as the second parameter.
+ * 
+ */
+function last(array, number) {
+    if (!Array.isArray(array) || number <= 0) {
+        return [];
+    } else if (typeof number !== "number") {
+        return array[array.length - 1];
+    } else if (number > array.length) {
+        return array;
+    }
+    return array.slice(-number);
+}
+module.exports.last = last;

@@ -60,14 +60,14 @@ function drawChessboard(x) {
         row += "#";
       }
     }
+    //push row onto the board array
     board.push(row);
   }
     
-  //return board joined into string
-  return board.join("\n") + "\n";
+  //log board joined into string to the console
+  console.log(board.join("\n") + "\n");
 }
 
-console.log(drawChessboard(8));
 
 
 ////////////////////////////////////////////////////////////////////////////////

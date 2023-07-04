@@ -92,7 +92,7 @@ _.first = function(array, number) {
         //if true, return array
         return array;
     }
-    //return the first number items in array
+    //return the first number items of array
     return array.slice(0, number);
 }
 
@@ -113,7 +113,23 @@ _.first = function(array, number) {
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = function(array, number) {
+    //create if statement to determine if array is an array or if number is less than or equal to 0
+    if (!Array.isArray(array) || number <= 0) {
+        //if true, return array
+        return [];
+    //create else if statement to determine if number is not a type of number
+    } else if (typeof number !== "number") {
+        //if true, return the last element in array
+        return array[array.length - 1];
+    //create else if statement to determine if number > the length of the array
+    } else if (number > array.length) {
+        //if true, return array
+        return array;
+    }
+    //return the last number items of array
+    return array.slice(-number);
+}
 
 /** _.indexOf
 * Arguments:
@@ -130,7 +146,17 @@ _.first = function(array, number) {
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
+_.indexOf = function(array, value) {
+    //create a for loop to iterate over array
+    for (let i = 0; i < array.length; i++) {
+        //create if statement to find an occurance of value
+        if (array[i] === value) {
+            //if true, return the index of the array
+            return i;
+        }
+    //else return -1
+    } return -1;
+}
 
 /** _.contains
 * Arguments:
