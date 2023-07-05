@@ -278,7 +278,20 @@ _.filter = function(array, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(array, func) {
+    //declare an empty array
+    let newArray = [];
+    //create a for loop to iterate over
+    for (let i = 0; i < array.length; i++) {
+        //create if statment to for which calling function returned false
+        if (func(array[i], i, array) === false) {
+            //push the new array of elements
+            newArray.push(array[i]);
+        }
+    }
+    //return the new array
+    return newArray;
+}
 
 /** _.partition
 * Arguments:
@@ -298,7 +311,26 @@ _.filter = function(array, func) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = function(array, func) {
+    //declare an empty array truthy
+    let truthy = [];
+    //declare an empty array falsey
+    let falsey = [];
+    //create a for loop to iterate over array
+    for (let i = 0; i < array.length; i++){
+        //create if statement for which calling the function returned true
+        if (func(array[i], i, array) === true) {
+            //if true, push the element onto the truthy array
+            truthy.push(array[i]);
+        //else if for which calling the function returned false
+        } else if (func(array[i], i, array) === false) {
+            //if true, push the element onto the falsey array
+            falsey.push(array[i]);
+        }
+    }
+    //return the two subarrays into one array
+    return [truthy, falsey];
+}
 
 /** _.map
 * Arguments:
@@ -315,7 +347,27 @@ _.filter = function(array, func) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(collection, func) {
+    //declare a new array
+    let newArr = [];
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        //create for loop to iterate over collection
+        for (let i = 0; i < collection.length; i++) {
+            //call the function and push onto new array
+            newArr.push(func(collection[i], i, collection));
+        }
+    //else collection is an object
+    } else if (typeof collection === "object") {
+        //create for in loop
+        for (let key in collection) {
+            //call the function and push onto new array
+            newArr.push(func(collection[key], key, collection));
+        }
+    }
+    //return newArr
+    return newArr;
+}
 
 /** _.pluck
 * Arguments:
@@ -327,7 +379,11 @@ _.filter = function(array, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
+_.pluck = function(array, property){
+    return _.map(array, function(obj) {
+        return obj[property];
+    });
+}
 
 /** _.every
 * Arguments:
