@@ -412,14 +412,20 @@ _.every = function(collection, func) {
     if (Array.isArray(collection)) {
         //determine if function wasn't provided
         if (func === undefined) {
+            //create for loop to iterate over collection
             for (let i = 0; i < collection.length; i++) {
+                //if the return value of calling function for every element is falsey
                 if (!collection[i]){
+                    //return false
                     return false;
                 }
             }
         } else { //else it was
+            //create for loop to iterate over collection
             for (let i = 0; i < collection.length; i++) {
-                if (!func(collection[i], i, collection)) { //if result of invoking is falsey
+                //if result of invoking is falsey
+                if (!func(collection[i], i, collection)) {
+                    //return false
                     return false;
                 }
             }
@@ -428,12 +434,24 @@ _.every = function(collection, func) {
     } else {
         //determine if function wasn't provided
         if (func === undefined) {
-
+            //create for in loop to iterate over collection
+            for (let key in collection){
+                //if the return value of calling function for every element is falsey
+                if (!collection[key])
+                //return false
+                    return false;
+            }
         } else { //else it was
-
+            //create for in loop to iterate over collection
+            for (let key in collection){
+                //if the return value of calling function for every element is truthy
+                if (collection[key])
+                    //return true
+                    return true;
+            }
         }
 
-    }
+    } // all else return true
     return true;
 };
 
@@ -464,7 +482,7 @@ _.some = function(collection, func){
         //create for loop to iterate over collection
         for (let i = 0; i < collection.length; i++) {
             //if func is provided
-            if (func) {
+            if (func !== undefined) {
                 //if calling the func is truthy
                if (func(collection[i], i, collection)) {
                 //if true, return true
