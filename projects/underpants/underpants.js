@@ -458,7 +458,44 @@ _.every = function(collection, func) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, func){
+    //create if statement to determine if collection is an array
+    if (Array.isArray(collection)) {
+        //create for loop to iterate over collection
+        for (let i = 0; i < collection.length; i++) {
+            //if func is provided
+            if (func) {
+                //if calling the func is truthy
+               if (func(collection[i], i, collection)) {
+                //if true, return true
+                return true;
+               } 
+               //else if calling the function is true for at least one element
+            } else if (collection[i]) {
+                //if true, return true
+                return true;
+            }
+    }
+    //else if collection is an object
+ } else if (typeof collection === "object") {
+        //use for loop to iterate over collection
+        for (let key in collection) {
+            //if calling the function returns true for at least one element
+            if (collection[key]) {
+                //if true, return true
+                return true;
+            }
+        }
+    } //return false
+    return false;
+}
 
+/**
+ map => calls a function on each value and psuhes return to output array
+ filter => tests each value with a function and pushes the values that return true to output array
+ reduce => iterates through a collection, passes on each value to a callback to "accumulate" a single return value
+ forEach => calls a function on each value on an array (no return)
+ */
 
 /** _.reduce
 * Arguments:
@@ -478,7 +515,22 @@ _.every = function(collection, func) {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = function(array, func, seed){
+    let result;
+    if (seed === undefined) {
+        result = array[0];
+        for (let i = 1; i < array.length; i++) {
+            result = func(result, array[i], i, array);
+        }
+    } else {
+        result = seed;
+        for (let i = 0; i < array.length; i++){
+            result = func(result, array[i], i, array);
+            //reassign result to result of invoking callback function
+        }
+    }
+    return result;
+};
 
 /** _.extend
 * Arguments:
@@ -494,7 +546,23 @@ _.every = function(collection, func) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-
+_.extend = function(object1, object2, ...moreObjects){
+    //create for in loop to iterate over objects
+    for (let key in object2) {
+        //copy properties from obj2 to obj1
+        object1[key] = object2[key];
+    }
+    //create for loop to iterate over moreobjects
+    for (let i = 0; i < moreObjects.length; i++) {
+        //create for in loop to iterate over more objects properties
+          for (let key in moreObjects[i]) {
+            //copy more object properties to object1
+            object1[key] = moreObjects[i][key];
+          }
+        }
+    //return the updated object
+    return object1;
+}
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
