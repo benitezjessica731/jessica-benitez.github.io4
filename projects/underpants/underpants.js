@@ -534,19 +534,28 @@ _.some = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 _.reduce = function(array, func, seed){
+    //declare result
     let result;
+    //create if statement to determine if seed was defined
     if (seed === undefined) {
+        //if true, set result to the first element of array
         result = array[0];
+        //create for loop to iterate over array
         for (let i = 1; i < array.length; i++) {
+            //reassign result to result of invoking callback function
             result = func(result, array[i], i, array);
         }
     } else {
+        //set result equal to seed
         result = seed;
+        //create for loop to iterate over array
         for (let i = 0; i < array.length; i++){
-            result = func(result, array[i], i, array);
             //reassign result to result of invoking callback function
+            result = func(result, array[i], i, array);
+            
         }
     }
+    //return result
     return result;
 };
 

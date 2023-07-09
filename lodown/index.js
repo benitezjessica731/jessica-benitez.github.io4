@@ -27,7 +27,7 @@ function typeOf(value) {
     } else {
         return typeof value;
     }
-}
+};
 module.exports.typeOf = typeOf;
 
 /**
@@ -48,7 +48,7 @@ function first(array, number) {
         return array;
     }
     return array.slice(0, number);
-}
+};
 module.exports.first = first;
 
 /**
@@ -69,7 +69,7 @@ function last(array, number) {
         return array;
     }
     return array.slice(-number);
-}
+};
 module.exports.last = last;
 
 /**
@@ -89,7 +89,7 @@ function indexOf(array, value) {
         }
     }
     return -1;
-}
+};
 module.exports.indexOf = indexOf;
 
 /**
@@ -102,7 +102,7 @@ module.exports.indexOf = indexOf;
  */
 function contains(array, value){
     return array.includes(value) ? true: false;
-}
+};
 module.exports.contains = contains;
 
 /** 
@@ -123,7 +123,7 @@ function each(collection, action) {
             action(collection[key], key, collection);
         }
     }
-}
+};
 module.exports.each = each;
 
 /**
@@ -141,7 +141,7 @@ function unique(array){
         }
     }
     return newArr;
-}
+};
 module.exports.unique = unique;
 
 /**
@@ -162,7 +162,7 @@ function filter(array, func) {
         }
     }
     return storArr;
-}
+};
 module.exports.filter = filter;
 
 /**
@@ -182,7 +182,7 @@ function reject(array, func){
         }
     }
     return newArray;
-}
+};
 module.exports.reject = reject;
 
 /**
@@ -206,7 +206,7 @@ function partition(array, func){
         }
     }
     return [truthy, falsey];
-}
+};
 module.exports.partition = partition;
 
 /**
@@ -230,7 +230,7 @@ function map(array, func){
         }
     }
     return newArr;
-}
+};
 module.exports.map = map;
 
 /**
@@ -245,7 +245,7 @@ function pluck(array, property){
     return _.map(array, function(obj) {
         return obj[property];
     });
-}
+};
 module.exports.pluck = pluck;
 
 /**
@@ -286,5 +286,86 @@ function every(collection, func){
             }
         }
         return true;
-}
+};
 module.exports.every = every;
+
+/**
+ * some: Function tests whether at least one element in the array passes the test 
+ * implemented by the provided function.
+ * 
+ * @param {array or object} collection: Function takes in a collection as its first argument.
+ * @param {func} action: Function takes in a function as its second parameter.
+ * @returns {boolean} : Function returns true or false based on conditions.
+ * 
+ */
+function some(collection, func){
+    if (Array.isArray(collection)) {
+        for (let i = 0; i < collection.length; i++) {
+            if (func !== undefined) {
+               if (func(collection[i], i, collection)) {
+                return true;
+               } 
+            } else if (collection[i]) {
+                return true;
+            }
+    }
+ } else if (typeof collection === "object") {
+        for (let key in collection) {
+            if (collection[key]) {
+                return true;
+            }
+        }
+    return false;
+    }
+};
+module.exports.some = some;
+
+/**
+ * reduce: Function executes a user-supplied "reducer" callback function on each element of the array,
+ * in order, passing in the return value from the calculation on the preceding element.
+ * 
+ * @param {array} : Function takes in an array as its first parameter.
+ * @param {func} : Function takes in a function as its second parameter.
+ * @param {seed} : Function takes in a seed as its third parameter.
+ * @returns {value} : Function returns the value that results from running the "reducer" callback function 
+ * to completion over the entire array.
+ * 
+ */
+function reduce(array, func, seed){
+    let result;
+    if (seed === undefined) {
+        result = array[0];
+        for (let i = 1; i < array.length; i++) {
+            result = func(result, array[i], i, array);
+        }
+    } else {
+        result = seed;
+        for (let i = 0; i < array.length; i++){
+            result = func(result, array[i], i, array);
+        }
+    }
+    return result;
+};
+module.exports.reduce = reduce;
+
+/**
+ * extend: Function copies all properties from the source to the destination object.
+ * 
+ * @param {object} : Function takes in an object as its first parameter.
+ * @param {object} : Function takes in an object as its second parameter.
+ * @param {object} : Function takes in a possible third parameter of multiple objects.
+ * @returns {object} : Function returns the first object argument updated with the other object arguments.
+ * 
+ */
+function extend(object1, object2, ...moreObjects){
+    for (let key in object2) {
+        object1[key] = object2[key];
+    }
+    for (let i = 0; i < moreObjects.length; i++) {
+          for (let key in moreObjects[i]) {
+            object1[key] = moreObjects[i][key];
+          }
+        }
+    return object1;
+};
+module.exports.extend = extend;
